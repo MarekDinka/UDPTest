@@ -21,7 +21,7 @@ public class Listener {
     public void listen() {
         byte[] buffer = new byte[256*4];
         Sender.throwAPacket(IP, PORT);
-        while (socket.isConnected() && socket.isBound() && !socket.isClosed()) {
+        while (socket.isBound()) {
             try {
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
