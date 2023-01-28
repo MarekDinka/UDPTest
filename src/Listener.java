@@ -25,8 +25,9 @@ public class Listener {
             try {
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
-                System.out.println("Packet received = " + Arrays.toString(packet.getData()));
-                Main.setI(packet.getData()[0]);
+//                System.out.println("Packet received = " + Arrays.toString(packet.getData()));
+                System.out.println("i = " + packet.getData()[0]);
+                Main.setI(packet.getData()[0] + 1);
                 Sender.throwAPacket(IP, PORT);
             } catch (IOException e) {
                 e.printStackTrace();
