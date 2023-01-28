@@ -28,6 +28,11 @@ public class Listener {
 //                System.out.println("Packet received = " + Arrays.toString(packet.getData()));
                 System.out.println("i = " + packet.getData()[0]);
                 Main.setI(packet.getData()[0] + 1);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Sender.throwAPacket(IP, PORT);
             } catch (IOException e) {
                 e.printStackTrace();
