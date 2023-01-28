@@ -22,7 +22,7 @@ public class Listener {
 
     public void listen() {
         byte[] buffer = new byte[256*4];
-        Sender.throwAPacket(IP, PORT);
+        Sender.throwASafePacket(IP, PORT);
         if (SAFETY == 1) {
             while (socket.isBound()) {
                 try {
@@ -46,6 +46,9 @@ public class Listener {
                 try {
                     DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                     socket.receive(packet);
+                    if (packet.getData()[1] == 1) { // TODO -> check if I is right
+                        socket.receive(packet);
+                    }
                     System.out.println("i = " + packet.getData()[0]);
                     Sender.throwAckPacket(IP, PORT);
                     Main.setI(packet.getData()[0] + 1);
