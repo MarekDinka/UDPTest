@@ -17,6 +17,6 @@ public class Main {
             exit(1);
         }
         Listener l = new Listener(args[0], Integer.parseInt(args[1]));
-        l.start();
+        l.listen();
     }
 }

@@ -3,7 +3,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Arrays;
 
-public class Listener extends Thread {
+public class Listener {
     private DatagramSocket socket;
     private final String IP;
     private final int PORT;
@@ -18,9 +18,9 @@ public class Listener extends Thread {
         }
     }
 
-    @Override
-    public void run() {
+    public void listen() {
         byte[] buffer = new byte[256*4];
+        Sender.throwAPacket(IP, PORT);
         while (socket.isConnected() && socket.isBound() && !socket.isClosed()) {
             try {
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
